@@ -1,5 +1,5 @@
 from yandex_tracker_client import TrackerClient
-client = TrackerClient(token='y0_AgAAAAA_bDlXAAuQdwAAAAEIHbu4AACJQKPKUa9OTruWzW_UQ_ZKri5cMg', cloud_org_id='bpfbu7h2q3i8e83avh49')
+client = TrackerClient(token='', cloud_org_id='')
 
 
 YEAR = 2025
