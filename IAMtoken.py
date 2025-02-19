@@ -2,19 +2,23 @@ import requests
 from yandex_tracker_client import TrackerClient
 
 # Ваши данные
-OAUTH_TOKEN = 'y0__xDX8rD7AxizmDUg6ZT-oBKvyFI_hiwaAHNj78r96z2XWjIt1w'
-X_ORG_ID = 'bpfbu7h2q3i8e83avh49'  # Убедитесь, что это строка
+OAUTH_TOKEN = ""
+X_ORG_ID = ""
+
 
 # Функция для получения IAM-токена
 def get_iam_token(oauth_token):
     response = requests.post(
-        'https://iam.api.cloud.yandex.net/iam/v1/tokens',
-        json={"yandexPassportOauthToken": oauth_token}
+        "https://iam.api.cloud.yandex.net/iam/v1/tokens",
+        json={"yandexPassportOauthToken": oauth_token},
     )
     if response.status_code == 200:
-        return response.json().get('iamToken')
+        return response.json().get("iamToken")
     else:
-        raise Exception(f"Error getting IAM token: {response.status_code}, {response.text}")
+        raise Exception(
+            f"Error getting IAM token: {response.status_code}, {response.text}"
+        )
+
 
 # Получаем IAM-токен
 IAM_TOKEN = get_iam_token(OAUTH_TOKEN)
