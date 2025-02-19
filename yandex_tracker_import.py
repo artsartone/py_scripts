@@ -1,12 +1,13 @@
 from yandex_tracker_client import TrackerClient
-
-client = TrackerClient(token='y0_AgAAAAA_bDlXAAuQdwAAAAEIHbu4AACJQKPKUa9OTruWzW_UQ_ZKri5cMg', cloud_org_id='bpfbu7h2q3i8e83avh49')
-
 from datetime import datetime
+
+client = TrackerClient(token='', cloud_org_id='')
+
+
 import pandas as pd
 import numpy as np
 
-df = pd.read_excel(r'D:\py_sripts\tracker.xlsx')
+df = pd.read_excel(r'D:\py_scripts non git\tracker.xlsx')
 
 # for i, row in df.iterrows():
 #     print(f"Index: {i}")
@@ -34,7 +35,7 @@ for i, row in df.iterrows():
         assignee=row['Исполнитель'],
         author=row['Автор'],
         status=row['Статус'],
-        testPoleTxt=row['Компания'],
+        globalTextField=row['Компания'],
         createdAt=row['Создано'].strftime("%Y-%m-%d"),
         end=end
     )

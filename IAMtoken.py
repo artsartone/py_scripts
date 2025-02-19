@@ -4,7 +4,7 @@ import logging
 
 # Ваши данные
 OAUTH_TOKEN = ""
-X_ORG_ID = ""
+ORG_ID = ""
 
 
 logging.basicConfig(level=logging.INFO)
