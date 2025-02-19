@@ -1,10 +1,13 @@
 import requests
 from yandex_tracker_client import TrackerClient
+import logging
 
 # Ваши данные
 OAUTH_TOKEN = ""
 X_ORG_ID = ""
 
+
+logging.basicConfig(level=logging.INFO)
 
 # Функция для получения IAM-токена
 def get_iam_token(oauth_token):
@@ -24,9 +27,23 @@ def get_iam_token(oauth_token):
 IAM_TOKEN = get_iam_token(OAUTH_TOKEN)
 
 # Инициализация клиента Tracker с IAM-токеном
-client = TrackerClient(token=IAM_TOKEN, cloud_org_id=X_ORG_ID)
+client = TrackerClient(iam_token=IAM_TOKEN, cloud_org_id=ORG_ID)
 
-# Пример использования клиента
-issues = client.issues.get_all()
-for issue in issues:
-    print(issue.key)
+#print(IAM_TOKEN)
+
+def find_and_print_issues(YEAR, QUEUE_KEY):
+    # Формируем фильтр
+    date_filter = f'Created: "{YEAR}-01-01 00:00:00".."{YEAR}-12-31 23:59:59" Queue: {QUEUE_KEY}'
+
+    try:
+        # Используем метод find для поиска задач
+        issues = client.issues.find(query=date_filter)
+
+        # Вывод результатов
+        for issue in issues:
+            logging.info(f"Задача: {issue.key}, создана: {issue.createdAt}")
+    except Exception as e:
+        logging.error(f"Ошибка при поиске задач: {e}")
+
+# Пример вызова функции
+find_and_print_issues(2025, "test_workflow")
